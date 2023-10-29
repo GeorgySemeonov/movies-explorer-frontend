@@ -6,6 +6,9 @@
     padding: 14px;
     box-sizing: border-box;
     background-color: #073042;
+    padding: 279px 60px 10px 57px;
+    text-align: center;
+
 }
 
 .promo__title {
@@ -20,10 +23,16 @@
 }
 
 .promo__logo {
-    width: 722px;
+    /* width: 722px;
     height: 244px;
     align-self: end;
-    padding-right: 29px;
+    padding-right: 29px; */
+
+    width: 679px;
+    height: 227px;
+    align-self: center;
+    /* padding-right: 5px; */
+    padding: 141px 1px 62px 1px;
 }
 
 @media screen and (min-width: 770px) {
@@ -47,9 +56,10 @@
     }
 
     .promo__logo {
-        width: 680px;
-        height: 230px;
+        width: 719px;
+    height: 242px;
         align-self: end;
+        padding: 0px ;
     }
 }
 
@@ -68,8 +78,15 @@
         margin-left: 31px;
         max-width: 626px;
         align-self: auto;
-        text-align: inherit;
+        /* text-align: inherit; */
+        text-align: initial;
         font-size: 40px;
         line-height: 52px;
+    }
+    .promo__logo {
+        width: 722px;
+        height: 244px;
+        align-self: end;
+        padding: 0px 29px 0px 0px;
     }
 }

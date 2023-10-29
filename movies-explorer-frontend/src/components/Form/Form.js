@@ -2,19 +2,26 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.svg";
 import "./Form.css";
+import '../../vendor/hover.css';
 
 function Form({ nameForm, title, buttonText, linkText, bottomText }) {
   
   return (
+
     <div className="form__container">
+
       <form className="form">
+
         <div className="form-top">
           <Link to="/">
             <img className="header__logo" src={logo} alt="логотип" />
           </Link>
           <p className="form__title">{title}</p>
         </div>
+
         <fieldset className="form__inputs-register">
+
+        {nameForm === 'signup' && (
           <label className="form__label">
             <span className="form__label_title">Имя</span>
             <input
@@ -23,7 +30,7 @@ function Form({ nameForm, title, buttonText, linkText, bottomText }) {
               placeholder="Имя"
             ></input>
           </label>
-
+ )}
           <label className="form__label">
             <span className="form__label_title">E-mail</span>
             <input
@@ -46,6 +53,8 @@ function Form({ nameForm, title, buttonText, linkText, bottomText }) {
             />
           </label>
         </fieldset>
+
+
         <div className="form__bottom">
           <button type="submit" className={`button__sumbit`}>
             {buttonText}
@@ -64,7 +73,10 @@ function Form({ nameForm, title, buttonText, linkText, bottomText }) {
             )}
           </div>
         </div>
+
+
       </form>
+
     </div>
   );
 }

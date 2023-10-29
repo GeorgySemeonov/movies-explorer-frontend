@@ -1,6 +1,7 @@
 import React from "react";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import "./MoviesCardList.css";
+import '../../vendor/hover.css';
 
 function MoviesCardList() {
   return (

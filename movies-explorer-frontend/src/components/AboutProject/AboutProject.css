@@ -82,13 +82,15 @@
 @media screen and (min-width: 768px) {
     .about-project {
         gap: 70px;
-        padding: 70px 50px 80px;
+        /* padding: 70px 50px 80px; */
+        padding: 87px 47px 80px;
     }
 
     .about-project__progress {
         grid-template-columns: 140px auto;
         grid-template-rows: 36px 42px;
-        padding-top: 17px;
+        /* padding-top: 17px; */
+        padding-top: 39px;
         font-weight: 400;
         font-size: 14px;
         line-height: 17px;

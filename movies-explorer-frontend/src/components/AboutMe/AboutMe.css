@@ -87,12 +87,14 @@
 
     .about-me__content-subtitle {
         margin: 0;
-        padding-bottom: 20px;
+        /* padding-bottom: 20px; */
+        padding-bottom: 35px;
     }
 
     .about-me__pic {
         order: 4;
         height: 307px;
+        padding-top: 0px;
     }
 
     .about-me__link {

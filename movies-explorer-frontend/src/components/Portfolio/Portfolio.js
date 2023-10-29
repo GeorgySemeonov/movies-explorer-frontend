@@ -1,5 +1,6 @@
 import React from "react";
 import "./Portfolio.css";
+import '../../vendor/hover.css';
 
 function Portfolio() {
   return (
@@ -9,7 +10,7 @@ function Portfolio() {
       <ul className="portfolio__list">
         <li className="portfolio__list-item-wrap">
           <a
-            href="тут ссылка"
+            href="https://github.com/GeorgySemeonov"
             target="_blank"
             rel="noopener noreferrer"
             className="portfolio__item hover"
@@ -20,7 +21,7 @@ function Portfolio() {
         </li>
         <li className="portfolio__list-item-wrap">
           <a
-            href="тут ссылка"
+            href="https://github.com/GeorgySemeonov"
             target="_blank"
             rel="noopener noreferrer"
             className="portfolio__item hover"
@@ -31,7 +32,7 @@ function Portfolio() {
         </li>
         <li className="portfolio__list-item-wrap">
           <a
-            href="тут ссылка"
+            href="https://github.com/GeorgySemeonov"
             target="_blank"
             rel="noopener noreferrer"
             className="portfolio__item hover"

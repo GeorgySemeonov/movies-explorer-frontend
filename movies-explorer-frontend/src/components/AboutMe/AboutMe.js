@@ -2,6 +2,7 @@ import React from "react";
 import Portfolio from "../Portfolio/Portfolio";
 import pic from "../../images/pic.png";
 import "./AboutMe.css";
+import '../../vendor/hover.css';
 
 function AboutMe() {
   return (
@@ -21,7 +22,7 @@ function AboutMe() {
             Контур». После того, как прошёл курс по веб-разработке, начал
             заниматься фриланс-заказами и ушёл с постоянной работы.
           </p>
-          <a href="#" className="about-me__link">
+          <a href="https://github.com" className="about-me__link hover">
             Github
           </a>
         </div>

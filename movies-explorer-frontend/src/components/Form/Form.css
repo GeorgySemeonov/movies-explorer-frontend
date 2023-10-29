@@ -228,6 +228,7 @@
         justify-self: center;
         align-self: center;
         padding: 0;
+        height: 100vh;
     }
 
     .form {

@@ -15,6 +15,7 @@
 
 .search-form {
     display: grid;
+    grid-template-columns: auto auto auto 250px 211px;
     justify-items: end;
     align-items: center;
     border-bottom: 1px solid #424242;
@@ -48,11 +49,11 @@
 .search-form__input::-ms-input-placeholder {
     color: #A0A0A0;
 }
-
+/* 
 .search-form__input:focus {
     border: 1.5px solid #2BE080;
     outline: none;
-}
+} */
 
 .search-form__inputs-error {
     justify-self: start;
@@ -78,7 +79,7 @@
     background: #4285F4;
     color: #FFFFFF;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 11px;
     line-height: 18px;
 }
 
@@ -99,9 +100,11 @@
     }
 
     .search-form__button {
-        margin-right: 10px;
-        height: 52px;
-        padding: 0 28px;
+        margin-right: 37px;
+        height: 35px;
+        width: 60px;
+    
+        padding: 0px;
     }
 }
 

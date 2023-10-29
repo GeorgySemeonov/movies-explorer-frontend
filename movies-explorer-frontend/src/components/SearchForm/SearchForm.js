@@ -1,6 +1,7 @@
 import React from "react";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import "./SearchForm.css";
+import '../../vendor/hover.css';
 
 function SearchForm() {
   return (
@@ -10,6 +11,7 @@ function SearchForm() {
           type="text"
           name="search-query"
           className="search-form__input"
+          placeholder="Фильм"
           required
         />
         <button

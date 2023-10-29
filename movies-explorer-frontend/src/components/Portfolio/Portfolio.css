@@ -53,9 +53,24 @@ portfolio__list-item-wrap {
 
 
 @media screen and (min-width: 768px) {
+    .portfolio {
+        /* display: flex;
+        flex-direction: column;
+        margin: 0; */
+        padding: 9px 0 0;
+    }
+
     .portfolio__title {
         font-size: 18px;
-        padding: 24px 0 30px;
+        /* padding: 24px 0 30px; */
+        padding: 18px 0 8px;
+    }
+
+
+    .portfolio__list {
+        
+        padding: 12px 0 0;
+      
     }
 
     .portfolio__item-text {
