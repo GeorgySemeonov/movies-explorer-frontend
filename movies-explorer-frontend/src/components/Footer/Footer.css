@@ -53,7 +53,8 @@
 @media screen and (min-width: 768px) {
     .footer {
         display: grid;
-        padding: 59px 30px 20px;
+        padding: 60px 30px 20px;
+        /* padding: 157px 30px 20px; */
     }
 
     .footer__description {

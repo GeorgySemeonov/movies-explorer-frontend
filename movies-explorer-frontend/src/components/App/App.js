@@ -56,7 +56,7 @@ function App() {
             <Switch>
               <Route exact path="/signin">
                 <Login
-                  title="Вход"
+                  title="Рады видеть!"
                   buttonText="Войти"
                   linkText="Регистрация"
                   bottomText="Ещё не зарегистрированы?"

@@ -1,5 +1,6 @@
 .about-project {
-    padding: 56px 18px;
+    /* padding: 56px 18px; */
+    padding: 70px 18px;
     display: flex;
     flex-direction: column;
     gap: 60px;
@@ -8,14 +9,17 @@
 .about-project__title {
     font-style: normal;
     font-weight: 400;
-    font-size: 22px;
-    line-height: 26px;
+    /* font-size: 22px;
+    line-height: 26px; */
     letter-spacing: -0.04em;
     height: 51px;
     border-bottom-style: solid;
     border-color: #DADADA;
     border-width: 1px;
     margin: 0;
+
+    font-size: 18px;
+    line-height: 22px;
 }
 
 .two-columns {
@@ -86,14 +90,22 @@
         padding: 87px 47px 80px;
     }
 
+    .about-project__title {
+        
+        font-size: 23px;
+        line-height: 26px;
+    }
+
     .about-project__progress {
         grid-template-columns: 140px auto;
         grid-template-rows: 36px 42px;
         /* padding-top: 17px; */
-        padding-top: 39px;
+        padding-top: 22px;
+        /* padding-top: 39px; */
         font-weight: 400;
         font-size: 14px;
         line-height: 17px;
+
     }
 
     .two-columns {
@@ -114,7 +126,23 @@
         line-height: 24px;
         letter-spacing: -0.04em;
     }
+
+    .two-columns__subtitle {
+    
+        font-size: 12px;
+        line-height: 18px;
+    }
 }
+
+/* @media screen and (min-width: 768px) {
+
+.two-columns__subtitle {
+    
+    font-size: 12px;
+    line-height: 18px;
+}
+
+} */
 
 @media screen and (min-width: 1280px) {
     .about-project {
@@ -122,6 +150,7 @@
     }
 
     .two-columns__title {
+        
         font-size: 20px;
         line-height: 24px;
         padding-bottom: 26px;
@@ -131,6 +160,10 @@
 
         font-size: 14px;
         line-height: 20px;
+    }
+    .about-project__title {
+font-size: 22px;
+    line-height: 26px;
     }
 
     .about-project__progress {

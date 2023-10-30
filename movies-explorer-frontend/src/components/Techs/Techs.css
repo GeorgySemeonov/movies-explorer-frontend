@@ -1,5 +1,6 @@
 .techs {
-    padding: 70px 18px;
+    /* padding: 70px 18px; */
+    padding: 56px 18px;
     display: flex;
     flex-direction: column;
     gap: 60px;
@@ -23,7 +24,8 @@
 .techs__title {
     font-style: normal;
     font-weight: 400;
-    font-size: 22px;
+    /* font-size: 22px; */
+    font-size: 18px;
     line-height: 26px;
     letter-spacing: -0.04em;
     height: 51px;
@@ -73,7 +75,8 @@
 
 @media screen and (min-width: 768px) {
     .techs {
-        padding: 90px 50px;
+        padding: 87px 50px;
+        /* padding: 90px 50px; */
         gap: 80px;
         background: #272727;
         max-height: 567px;

@@ -1,6 +1,7 @@
 .movies__cards-section {
     display: grid;
-    gap: 20px;
+    /* gap: 20px; */
+    gap: 33px;
     padding-bottom: 0;
     box-sizing: border-box;
     justify-items: center;
@@ -25,13 +26,14 @@
     color: #FFFFFF;
     border: none;
     border-radius: 6px;
-    margin: 50px 0 80px;
+    margin: 60px 30px 107px;
+    /* margin: 50px 0 80px; */
     padding: 0;
 }
 
 @media screen and (min-width: 768px) {
     .movies__cards-section {
-        gap: 40px;
+        gap: 32px 26px;
         grid-template-columns: repeat(auto-fit, minmax(271px, 1fr));
         justify-items: stretch;
     }
@@ -39,7 +41,9 @@
     .movies__more-button {
         width: 320px;
         justify-self: center;
-        margin: 0;
+       margin: 60px 0px 0px 194px;
+         /* margin-left: 194px;
+    margin-top: 60px; */
     }
 }
 
@@ -60,6 +64,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 48px 409px 88px;
+        margin: 44px 409px 88px;
     }
 }

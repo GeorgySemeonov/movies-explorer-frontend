@@ -58,6 +58,7 @@ portfolio__list-item-wrap {
         flex-direction: column;
         margin: 0; */
         padding: 9px 0 0;
+        
     }
 
     .portfolio__title {
@@ -68,13 +69,14 @@ portfolio__list-item-wrap {
 
 
     .portfolio__list {
-        
-        padding: 12px 0 0;
+        padding: 18px 0 0;
+        /* padding: 12px 0 0; */
       
     }
 
     .portfolio__item-text {
-        font-size: 28px;
+        /* font-size: 28px; */
+        font-size: 26px;
         line-height: 50px;
         margin-bottom: 9px;
         letter-spacing: -0.004em;
@@ -90,6 +92,7 @@ portfolio__list-item-wrap {
 
     .portfolio__item {
         padding-bottom: 0;
+        
     }
 }
 
@@ -100,6 +103,11 @@ portfolio__list-item-wrap {
 
     .portfolio__title {
         padding: 32px 0 30px;
+    }
+
+    .portfolio__item-text {
+        font-size: 28px;
+    
     }
 
     .portfolio__list {

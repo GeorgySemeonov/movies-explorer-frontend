@@ -8,13 +8,13 @@ import menuLogo from '../../images/burger-icon-main.svg';
 import accountLogo from '../../images/profile.svg';
 
 function Header() {
-  const [activeBurger, setActiveBurger] = React.useState(false); // активация бургер-меню
+  const [activeBurger, setActiveBurger] = React.useState(false); 
   const location = useLocation();
-  // переключатель бургер-меню
+  
   function handleActiveBurger() {
     setActiveBurger(!activeBurger);
   }
-  // закрыть меню при переходе на другой роут
+ 
   React.useEffect(() => {
     setActiveBurger(false);
   }, [location.pathname]);
@@ -76,12 +76,12 @@ function Header() {
     //       </> */}
     // </header>
 
-<header className="header">
+<header >
 { location.pathname === '/' ? (
 
       <Route  path={['/']}>
         
-          <>
+          <section className="header header__reg">
          
             <Link to="/">
               <img className="header__logo" src={logo} alt="логотип" />
@@ -99,7 +99,7 @@ function Header() {
               </li>
             </ul>
             
-          </>
+          </section>
          
       </Route>
       
@@ -107,7 +107,7 @@ function Header() {
 
       <Route path={['/movies', '/saved-movies', '/profile']}>
     
-          <>
+          <section className="header ">
             <Link to="/">
               <img className="header__logo" src={logo} alt="логотип" />
             </Link>
@@ -133,7 +133,7 @@ function Header() {
             <Link to="/profile" className="profile-button-wraper">
             <input className="profile-button hover"
                   onClick={handleActiveBurger}
-                   type="image" src={accountLogo} border="0" alt="Submit" />
+                   type="image" src={accountLogo} border="0" alt="Аккаунт" />
              
             </Link>
 
@@ -143,7 +143,7 @@ function Header() {
               alt="иконка меню"
               onClick={handleActiveBurger}
             />
-          </>
+          </section>
       
 
         {activeBurger && (
@@ -191,7 +191,7 @@ function Header() {
               <Link className="profile-button-wraper-burger" to="/profile">
               <input className="profile-button hover"
                   onClick={handleActiveBurger}
-                   type="image" src={accountLogo} border="0" alt="Submit" />
+                   type="image" src={accountLogo} border="0" alt="Аккаунт лого" />
 
             
               </Link>

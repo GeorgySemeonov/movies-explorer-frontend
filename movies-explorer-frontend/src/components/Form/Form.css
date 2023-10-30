@@ -1,11 +1,22 @@
 .form {
-    margin: 18px 0 18px;
+    /* margin: 18px 0 18px;
     display: grid;
     grid-template-rows: max-content max-content auto;
     flex-direction: column;
     max-width: 396px;
     width: 100%;
     height: 100%;
+    justify-self: center; */
+
+    margin: 18px 0 18px;
+    display: grid;
+    grid-template-rows: max-content max-content auto;
+    flex-direction: column;
+    max-width: 396px;
+    min-width: 261px;
+    /* width: 100vh; */
+    /* height: 100vh; */
+    height: 121vh;
     justify-self: center;
 }
 

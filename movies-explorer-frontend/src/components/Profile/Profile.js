@@ -72,7 +72,7 @@ function Profile() {
   }
 
   return (
-    <div className="profile">
+    <section className="profile">
       
 
       <div className="profile__content">
@@ -152,7 +152,7 @@ function Profile() {
           </button>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
