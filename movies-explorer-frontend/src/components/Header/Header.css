@@ -12,7 +12,7 @@
     z-index: 1;
 }
 
-.header__reg{
+.header-reg{
   
     background-color: #073042;
   
@@ -277,6 +277,12 @@
     .header__menu-icon {
         display: none;
     }
+
+    .header__logo {
+        padding-left: 0px;
+       
+    }
+   
     /* .header__reg{
         padding: 0;
     } */

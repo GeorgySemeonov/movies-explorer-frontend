@@ -81,10 +81,10 @@ function Header() {
 
       <Route  path={['/']}>
         
-          <section className="header header__reg">
+          <section className="header header-reg">
          
             <Link to="/">
-              <img className="header__logo" src={logo} alt="логотип" />
+              <img className="header__logo hover" src={logo} alt="логотип" />
             </Link>
             <ul className="header__links">
               <li className="header__link-item">
@@ -109,7 +109,7 @@ function Header() {
     
           <section className="header ">
             <Link to="/">
-              <img className="header__logo" src={logo} alt="логотип" />
+              <img className="header__logo hover" src={logo} alt="логотип" />
             </Link>
             <nav className="header__links-movies">
               <NavLink

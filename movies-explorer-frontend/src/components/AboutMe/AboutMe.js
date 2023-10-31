@@ -11,7 +11,7 @@ function AboutMe() {
       <div className="about-me__content">
         <img className="about-me__pic" src={pic} alt="фото студента" />
         <div className="about-me__text">
-          <h2 className="about-me__content-title">Виталий</h2>
+          <h3 className="about-me__content-title">Виталий</h3>
           <p className="about-me__content-subtitle">
             Фронтенд-разработчик, 30 лет
           </p>

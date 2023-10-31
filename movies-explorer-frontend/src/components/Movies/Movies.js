@@ -8,12 +8,14 @@ import "./Movies.css";
 
 function Movies() {
   return (
+<main>
     <section className="movies">
       {/* <Header /> */}
       <SearchForm />
       <MoviesCardList />
       {/* <Footer /> */}
     </section>
+    </main>
   );
 }
 

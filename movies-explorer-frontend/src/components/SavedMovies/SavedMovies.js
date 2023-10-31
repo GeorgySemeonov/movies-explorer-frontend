@@ -7,11 +7,13 @@ import './SavedMovies.css';
 function SavedMovies() {
 
   return (
+    <main>
     <section className="movies">
       <SearchForm />
         <MoviesCardList/>
     
     </section>
+    </main>
   );
 }
 

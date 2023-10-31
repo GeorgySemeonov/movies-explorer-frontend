@@ -103,7 +103,8 @@
 @media screen and (min-width: 768px) {
 
     .search-form {
-    padding-bottom: 109px;
+        padding-bottom: 18px;
+    /* padding-bottom: 109px; */
     grid-template-columns: auto auto auto 250px 211px;
     
     }
@@ -137,4 +138,22 @@
         padding: 70px 0px 50px;
         padding-bottom: 80px;
     }
+
+    .search-form {
+        padding-bottom: 70px;
+        /* grid-template-columns: auto auto auto 250px 211px; */
+        grid-template-rows: auto;
+        }
+
+        .search-form__button {
+            margin-right: 45px;
+        }
+
+        .filter {
+           
+            margin-top: 0px;
+            
+        }
+
+        
 }
