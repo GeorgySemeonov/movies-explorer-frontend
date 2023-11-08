@@ -1,15 +1,30 @@
 import React from "react";
 import "./FilterCheckbox.css";
 
-function FilterCheckbox() {
+
+function FilterCheckbox({ value, onChange }) {
   return (
     <div className="filter">
-      <label className="filter__checkbox">
-        <input type="checkbox" className="filter__input" />
-        <span className="filter__round" />
-      </label>
-      <p className="filter__title">Короткометражки</p>
-    </div>
+    <label className="filter__checkbox">
+      <input
+        type="checkbox"
+        className="filter__input"
+        checked={value}
+        onChange={onChange}
+      />
+      <span className="filter__round" />
+    </label>
+    <p className="filter__title">Короткометражки</p>
+  </div>
+
+//_______________________________________________________________
+    // <div className="filter">
+    //   <label className="filter__checkbox">
+    //     <input type="checkbox" className="filter__input" />
+    //     <span className="filter__round" />
+    //   </label>
+    //   <p className="filter__title">Короткометражки</p>
+    // </div>
   );
 }
 
