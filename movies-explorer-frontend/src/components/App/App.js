@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Switch } from 'react-router-dom';
+import { useCallback } from 'react';
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
@@ -10,7 +11,7 @@ import Profile from "../Profile/Profile";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import PageNotFound from "../PageNotFound/PageNotFound";
 import "./App.css";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import {CurrentUserContext} from "../../contexts/CurrentUserContext";
 import ProtectedRoute from '../ProtectedRoute';
 import Preloader from '../Preloader/Preloader';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
@@ -57,16 +58,17 @@ function App() {
     }
   };
 
-  const auth = React.useCallback(
+  const auth = useCallback(
     async (jwt, realPath) => {
       return mainApi
         .getUserInfo(jwt)
         .then((user) => {
           if (user) {
             setLoggedIn(true);
-            localStorage.setItem('userId', user.data._id); 
+            localStorage.setItem('id', user.data._id); 
             console.log('realPath', realPath);
             setCurrentUser(user.data);
+            console.log(user.data)
             history.push(realPath);
           } else {
             setLoggedIn(false);
@@ -87,6 +89,7 @@ function App() {
         const jwt = localStorage.getItem('jwt');
         const realPath = location.pathname;
         setIsLoading(true);
+        console.log(realPath);
         auth(jwt, realPath).finally(() => {
           setIsLoading(false);
         });

@@ -2,7 +2,7 @@ import React from "react";
 import "./Profile.css";
 import "../Form/Form.css";
 import '../../vendor/hover.css';
-import  CurrentUserContext  from '../../contexts/CurrentUserContext';
+import  {CurrentUserContext}  from '../../contexts/CurrentUserContext';
 
 import mainApi from '../../utils/MainApi';
 
