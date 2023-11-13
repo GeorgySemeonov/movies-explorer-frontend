@@ -3,14 +3,17 @@ import "./Profile.css";
 import "../Form/Form.css";
 import '../../vendor/hover.css';
 import  {CurrentUserContext}  from '../../contexts/CurrentUserContext';
-
+import {  useEffect } from 'react';
+// import { useForm } from 'react-hook-form';
 import mainApi from '../../utils/MainApi';
 
 function Profile({ handleLogout }) {
 
-  const { user: currentUser, updateUser } = React.useContext(CurrentUserContext);
-  const [isEditData, setIsEditData] = React.useState(false); 
-  const [errorEdit, setErrorEdit] = React.useState(false); 
+
+const { user: currentUser, updateUser } = React.useContext(CurrentUserContext);
+
+const [isEditData, setIsEditData] = React.useState(false); 
+const [errorEdit, setErrorEdit] = React.useState(false); 
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [isValidName, setIsValidName] = React.useState(false);
@@ -19,7 +22,8 @@ function Profile({ handleLogout }) {
   const [errorEmail, setErrorEmail] = React.useState('');
   const [isActiveEdit, setIsActiveEdit] = React.useState(false);
 
-  React.useEffect(() => {
+  
+  useEffect(() => {
     if (currentUser.name !== name || currentUser.email !== email) {
       setIsEditData(false);
     } else {
@@ -27,10 +31,16 @@ function Profile({ handleLogout }) {
     }
   }, [currentUser, name, email]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setName(currentUser.name);
     setEmail(currentUser.email);
   }, [currentUser]);
+
+
+///_____________________________________________________________________________
+ 
+
+
 
   const handelEditProfile = ({ name, email }) => {
     mainApi
@@ -47,11 +57,18 @@ function Profile({ handleLogout }) {
       });
   };
 
+  // const handleSubmit = (evt) => {
+  //   evt.preventDefault();
+  //   handelEditProfile({ name, email }); 
+  // };
+
+//-________________________________________________________________________
+
   const handleSubmitProfile = (e) => {
     e.preventDefault();
    
     if (name !== currentUser.name || email !== currentUser.email) {
-      setIsActiveEdit(true);
+      // setIsActiveEdit(true);
       handelEditProfile({ name, email }); 
       updateUser({ name, email }); 
     } else {
@@ -105,6 +122,7 @@ function Profile({ handleLogout }) {
                 Имя
               </span>
               <input
+
                 type="name"
                 className="form__inputs-item form__inputs-item_profile"
                 minLength={2}
@@ -112,11 +130,14 @@ function Profile({ handleLogout }) {
                 placeholder="Имя"
                 id="name"
                 value={name || ''}
-                onChange={handleNameChange}
+                onChange={
+               
+                 handleNameChange
+                }
                 required
               ></input>
               <span className="form__inputs-error form__inputs-error_profile">
-                {errorName}
+               {errorName}
               </span>
             </label>
 
@@ -125,12 +146,15 @@ function Profile({ handleLogout }) {
                 E-mail
               </span>
               <input
+
                 type="email"
                 className="form__inputs-item_profile form__inputs-item_profile_last"
                 placeholder="E-mail"
                 required
                 value={email || ''}
-                onChange={handleEmailChange}
+                onChange={
+                 handleEmailChange
+                }
               />
               <span className="form__inputs-error form__inputs-error_profile ">
                 {errorEmail}
@@ -154,8 +178,10 @@ function Profile({ handleLogout }) {
           <button
             type="submit"
             form="profile"
+           
             disabled={!isActiveEdit}
             className={`profile__links-item ${isActiveEdit && 'hover'}`}
+           
           >
             Редактировать
           </button>

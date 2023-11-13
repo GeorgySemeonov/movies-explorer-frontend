@@ -4,67 +4,98 @@ import logo from "../../images/logo.svg";
 import "./Form.css";
 import '../../vendor/hover.css';
 import { useForm } from 'react-hook-form';
+import { useCallback, useState, useEffect } from 'react';
 
 function Form({ nameForm, title, buttonText, linkText, bottomText,onSubmit }) {
   
- const [name, setUserName] = React.useState('');
- const [email, setEmail] = React.useState('');
- const [password, setPassword] = React.useState('');
+//  const [name, setUserName] = React.useState('');
+//  const [email, setEmail] = React.useState('');
+//  const [password, setPassword] = React.useState('');
 
- const [isValidName, setIsValidName] = React.useState(false);
- const [isValidEmail, setIsValidEmail] = React.useState(false);
- const [isValidPassword, setIsValidPassword] = React.useState(false);
+//  const [isValidName, setIsValidName] = React.useState(false);
+//  const [isValidEmail, setIsValidEmail] = React.useState(false);
+//  const [isValidPassword, setIsValidPassword] = React.useState(false);
 
- const [errorName, setErrorName] =React.useState('');
- const [errorEmail, setErrorEmail] = React.useState('');
- const [errorPassword, setErrorPassword] = React.useState('');
+//  const [errorName, setErrorName] =React.useState('');
+//  const [errorEmail, setErrorEmail] = React.useState('');
+//  const [errorPassword, setErrorPassword] = React.useState('');
 
- const {
-   register,
-   formState: { errors },
-   handleSubmit,
+
+  //  register,
+  //  formState: { errors },
+  const { register, handleSubmit,
  } = useForm();
 
- function handleNameChange(e) {
-   const input = e.target;
-   setUserName(input.value);
-   setIsValidName(input.validity.valid);
-   if (!isValidName) {
-     setErrorEmail(input.validationMessage);
-   } else {
-     setErrorName('');
+//  function handleNameChange(e) {
+//    const input = e.target;
+//    setUserName(input.value);
+//    setIsValidName(input.validity.valid);
+//    if (!isValidName) {
+//      setErrorEmail(input.validationMessage);
+//    } else {
+//      setErrorName('');
      
-     // setIsDisabled(false);
-   }
- }
+//      // setIsDisabled(false);
+//    }
+//  }
 
- function handleEmailChange(event) {
-   const input = event.target;
-   setEmail(input.value);
-   setIsValidEmail(input.validity.valid);
-   if (!isValidEmail) {
-     setErrorEmail(input.validationMessage);
-   } else {
-     setErrorEmail('');
-   }
- }
+//  function handleEmailChange(event) {
+//    const input = event.target;
+//    setEmail(input.value);
+//    setIsValidEmail(input.validity.valid);
+//    if (!isValidEmail) {
+//      setErrorEmail(input.validationMessage);
+//    } else {
+//      setErrorEmail('');
+//    }
+//  }
 
- function handlePasswordChange(event) {
-   setPassword(event.target.value);
-   const input = event.target;
-   setPassword(input.value);
-   setIsValidPassword(input.validity.valid);
-   if (!isValidPassword) {
-     setErrorPassword(input.validationMessage);
-   } else {
-     setErrorPassword('');
+//  function handlePasswordChange(event) {
+//    setPassword(event.target.value);
+//    const input = event.target;
+//    setPassword(input.value);
+//    setIsValidPassword(input.validity.valid);
+//    if (!isValidPassword) {
+//      setErrorPassword(input.validationMessage);
+//    } else {
+//      setErrorPassword('');
+//    }
+//  }
+
+
+   const [values, setValues] = useState({});
+   const [errors, setErrors] = useState({});
+   const [isValid, setIsValid] = useState({});
+
+
+   function handleChange(evt) {
+     const name = evt.target.name;
+     const value = evt.target.value;
+     setValues({ ...values, [name]: value });
+     setErrors({ ...errors, [name]: evt.target.validationMessage });
+     setIsValid(evt.target.closest('form').checkValidity());
    }
- }
+
+   const resetForms = useCallback(
+     (updatedValues = {}, updatedErrors = {}, updatedIsValid = false) => {
+       setValues(updatedValues);
+       setErrors(updatedErrors);
+       setIsValid(updatedIsValid);
+     },
+     [setValues, setErrors, setIsValid]
+   );
+
+
+   useEffect(() => {
+    resetForms();
+  }, [resetForms]);
 
   return (
 
     <div className="form__container">
-    <form className="form" onSubmit={handleSubmit(onSubmit)}>
+    <form className="form" onSubmit={
+      handleSubmit
+      (onSubmit)}>
       <div className="form-top">
         <Link to="/">
           <img className="header__logo" src={logo} alt="логотип" />
@@ -75,7 +106,28 @@ function Form({ nameForm, title, buttonText, linkText, bottomText,onSubmit }) {
         {nameForm === 'signup' && (
           <label className="form__label">
             <span className="form__label_title">Имя</span>
+
+
             <input
+
+{...register('name', {
+  required: true,
+  pattern: /^[A-Za-zА-Яа-яЁё /s -]+$/,
+})}
+          type="text"
+          name="name"
+          className="form__inputs-item"
+          onChange={handleChange}
+          value={values.name || ''}
+          placeholder="Имя"
+          minLength="2"
+          maxLength="30"
+          // pattern="/^[A-Za-zА-Яа-яЁё /s -]+$/v"
+          required
+        ></input>
+
+
+            {/* <input
               {...register('name', {
                 required: true,
                 onChange: (e) => handleNameChange(e),
@@ -87,8 +139,14 @@ function Form({ nameForm, title, buttonText, linkText, bottomText,onSubmit }) {
               placeholder="Имя"
               id="name"
               value={name || ''}
-            ></input>
-            {errors.name && errors.name.type === 'required' && (
+            ></input> */}
+
+
+<span className="form__inputs-error">
+{errors.name || ''}
+              </span>
+
+            {/* {errors.name && errors.name.type === 'required' && (
               <span className="form__inputs-error">
                 Добавьте, пожалуйста, имя
               </span>
@@ -97,13 +155,33 @@ function Form({ nameForm, title, buttonText, linkText, bottomText,onSubmit }) {
               <span className="form__inputs-error">
                 Имя не бывает таким коротким
               </span>
-            )}
+            )} */}
           </label>
         )}
 
         <label className="form__label">
           <span className="form__label_title">E-mail</span>
+
           <input
+      //    /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
+      //   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+{...register('email', {
+  required: true,
+  pattern:/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,
+})}
+
+          type="email"
+          name="email"
+          className="form__inputs-item"
+          onChange={handleChange}
+          value={values.email || ''}
+          // pattern="/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/"
+          placeholder="E-mail"
+          minLength="6"
+          required
+        />
+
+          {/* <input
             {...register('email', {
               required: true,
               onChange: (e) => handleEmailChange(e),
@@ -113,8 +191,14 @@ function Form({ nameForm, title, buttonText, linkText, bottomText,onSubmit }) {
             className="form__inputs-item"
             placeholder="E-mail"
             value={email || ''}
-          />
-          {errors.email && errors.email.type === 'required' && (
+          /> */}
+
+<span className="form__inputs-error">
+{errors.email || ''}
+            </span>
+
+
+          {/* {errors.email && errors.email.type === 'required' && (
             <span className="form__inputs-error">
               Добавьте, пожалуйста, ваш E-mail
             </span>
@@ -123,12 +207,33 @@ function Form({ nameForm, title, buttonText, linkText, bottomText,onSubmit }) {
             <span className="form__inputs-error">
               E-mail написан с ошибкой
             </span>
-          )}
+          )} */}
+
+
         </label>
 
         <label className="form__label">
           <span className="form__label_title">Пароль</span>
+
           <input
+            {...register('password', {
+              required: true,
+            })}
+
+
+          type="password"
+          name="password"
+          className="form__inputs-item"
+          onChange={handleChange}
+          value={values.password || ''}
+          placeholder="Пароль"
+      
+          maxLength="30"
+          minLength="6"
+          required
+        />
+
+          {/* <input
             {...register('password', {
               required: true,
               minLength: 6,
@@ -139,8 +244,13 @@ function Form({ nameForm, title, buttonText, linkText, bottomText,onSubmit }) {
             className="form__inputs-item"
             placeholder="Пароль"
             value={password || ''}
-          />
-          {errors.password && errors.password.type === 'required' && (
+          /> */}
+
+<span className="form__inputs-error">
+{errors.password || ''}
+            </span>
+
+          {/* {errors.password && errors.password.type === 'required' && (
             <span className="form__inputs-error">
               Без пароля не получится, сорри
             </span>
@@ -152,18 +262,22 @@ function Form({ nameForm, title, buttonText, linkText, bottomText,onSubmit }) {
           )}
           {errors.password && errors.password.type === 'maxLength' && (
             <span className="form__inputs-error">Слишком длинный пароль</span>
-          )}
+          )} */}
+
+
         </label>
       </fieldset>
       <div className="form__bottom">
         <button
           type="submit"
-          className={`button__sumbit ${
-            errors.name &&
-            errors.password &&
-            errors.email &&
-            'button__sumbit_disable'
-          } hover`}
+          className={`button__sumbit  hover
+          
+          ${!isValid && 'button__sumbit_disable'}
+
+          
+         `}
+
+          disabled={!isValid}
         >
           {buttonText}
         </button>
