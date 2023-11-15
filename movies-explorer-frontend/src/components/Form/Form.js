@@ -8,60 +8,9 @@ import { useCallback, useState, useEffect } from 'react';
 
 function Form({ nameForm, title, buttonText, linkText, bottomText,onSubmit }) {
   
-//  const [name, setUserName] = React.useState('');
-//  const [email, setEmail] = React.useState('');
-//  const [password, setPassword] = React.useState('');
 
-//  const [isValidName, setIsValidName] = React.useState(false);
-//  const [isValidEmail, setIsValidEmail] = React.useState(false);
-//  const [isValidPassword, setIsValidPassword] = React.useState(false);
-
-//  const [errorName, setErrorName] =React.useState('');
-//  const [errorEmail, setErrorEmail] = React.useState('');
-//  const [errorPassword, setErrorPassword] = React.useState('');
-
-
-  //  register,
-  //  formState: { errors },
   const { register, handleSubmit,
  } = useForm();
-
-//  function handleNameChange(e) {
-//    const input = e.target;
-//    setUserName(input.value);
-//    setIsValidName(input.validity.valid);
-//    if (!isValidName) {
-//      setErrorEmail(input.validationMessage);
-//    } else {
-//      setErrorName('');
-     
-//      // setIsDisabled(false);
-//    }
-//  }
-
-//  function handleEmailChange(event) {
-//    const input = event.target;
-//    setEmail(input.value);
-//    setIsValidEmail(input.validity.valid);
-//    if (!isValidEmail) {
-//      setErrorEmail(input.validationMessage);
-//    } else {
-//      setErrorEmail('');
-//    }
-//  }
-
-//  function handlePasswordChange(event) {
-//    setPassword(event.target.value);
-//    const input = event.target;
-//    setPassword(input.value);
-//    setIsValidPassword(input.validity.valid);
-//    if (!isValidPassword) {
-//      setErrorPassword(input.validationMessage);
-//    } else {
-//      setErrorPassword('');
-//    }
-//  }
-
 
    const [values, setValues] = useState({});
    const [errors, setErrors] = useState({});
@@ -93,9 +42,7 @@ function Form({ nameForm, title, buttonText, linkText, bottomText,onSubmit }) {
   return (
 
     <div className="form__container">
-    <form className="form" onSubmit={
-      handleSubmit
-      (onSubmit)}>
+    <form className="form" onSubmit={handleSubmit(onSubmit)}>
       <div className="form-top">
         <Link to="/">
           <img className="header__logo" src={logo} alt="логотип" />
@@ -127,35 +74,10 @@ function Form({ nameForm, title, buttonText, linkText, bottomText,onSubmit }) {
         ></input>
 
 
-            {/* <input
-              {...register('name', {
-                required: true,
-                onChange: (e) => handleNameChange(e),
-                minLength: 2,
-                maxLength: 35,
-              })}
-              type="name"
-              className="form__inputs-item"
-              placeholder="Имя"
-              id="name"
-              value={name || ''}
-            ></input> */}
-
-
 <span className="form__inputs-error">
 {errors.name || ''}
               </span>
 
-            {/* {errors.name && errors.name.type === 'required' && (
-              <span className="form__inputs-error">
-                Добавьте, пожалуйста, имя
-              </span>
-            )}
-            {errors.name && errors.name.type === 'minLength' && (
-              <span className="form__inputs-error">
-                Имя не бывает таким коротким
-              </span>
-            )} */}
           </label>
         )}
 
@@ -181,34 +103,10 @@ function Form({ nameForm, title, buttonText, linkText, bottomText,onSubmit }) {
           required
         />
 
-          {/* <input
-            {...register('email', {
-              required: true,
-              onChange: (e) => handleEmailChange(e),
-              pattern: /[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+/,
-            })}
-            type="email"
-            className="form__inputs-item"
-            placeholder="E-mail"
-            value={email || ''}
-          /> */}
 
 <span className="form__inputs-error">
 {errors.email || ''}
             </span>
-
-
-          {/* {errors.email && errors.email.type === 'required' && (
-            <span className="form__inputs-error">
-              Добавьте, пожалуйста, ваш E-mail
-            </span>
-          )}
-          {errors.email && errors.email.type === 'pattern' && (
-            <span className="form__inputs-error">
-              E-mail написан с ошибкой
-            </span>
-          )} */}
-
 
         </label>
 
@@ -233,37 +131,9 @@ function Form({ nameForm, title, buttonText, linkText, bottomText,onSubmit }) {
           required
         />
 
-          {/* <input
-            {...register('password', {
-              required: true,
-              minLength: 6,
-              maxLength: 35,
-              onChange: (e) => handlePasswordChange(e),
-            })}
-            type="password"
-            className="form__inputs-item"
-            placeholder="Пароль"
-            value={password || ''}
-          /> */}
-
 <span className="form__inputs-error">
 {errors.password || ''}
             </span>
-
-          {/* {errors.password && errors.password.type === 'required' && (
-            <span className="form__inputs-error">
-              Без пароля не получится, сорри
-            </span>
-          )}
-          {errors.password && errors.password.type === 'minLength' && (
-            <span className="form__inputs-error">
-              Безопасный пароль включает не менее 6 символов
-            </span>
-          )}
-          {errors.password && errors.password.type === 'maxLength' && (
-            <span className="form__inputs-error">Слишком длинный пароль</span>
-          )} */}
-
 
         </label>
       </fieldset>

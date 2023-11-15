@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import "./MoviesCardList.css";
 import '../../vendor/hover.css';
 
-function MoviesCardList({ movies, error }) {
+function MoviesCardList({ saveMovies, movieError }) {
 
   const [maxMovies, setMaxMovies] = React.useState(0);
   const [step, setStep] = React.useState(0);
@@ -17,7 +17,7 @@ function MoviesCardList({ movies, error }) {
   const setMoviesRules = () => {
     const width = window.innerWidth;
     if (location.pathname === '/saved-movies') {
-      setMaxMovies(movies.length);
+      setMaxMovies(saveMovies.length);
     }
     if (width <= 720) {
       setMaxMovies(5);
@@ -46,11 +46,11 @@ function MoviesCardList({ movies, error }) {
   return (
 
     <section className="movies__cards-section">
-    {error ? (
-      <span className='movies__error'>{error}</span>
+    {movieError ? (
+      <span className='movies__error'>{movieError}</span>
     ) : (
       <>
-        {movies.map((movie, index) => {
+        {saveMovies.map((movie, index) => {
           if (index < maxMovies) {
             return (
               <MoviesCard key={movie.id || movie.movieId} movie={movie} />
@@ -60,7 +60,7 @@ function MoviesCardList({ movies, error }) {
         })}
       </>
     )}
-    {movies.length > maxMovies && location.pathname !== '/saved-movies' && (
+    {saveMovies.length > maxMovies && location.pathname !== '/saved-movies' && (
       <button className="movies__more-button hover" onClick={showMoreMovies}>
         Еще
       </button>

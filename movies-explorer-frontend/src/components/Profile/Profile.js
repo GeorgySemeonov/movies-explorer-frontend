@@ -3,7 +3,7 @@ import "./Profile.css";
 import "../Form/Form.css";
 import '../../vendor/hover.css';
 import  {CurrentUserContext}  from '../../contexts/CurrentUserContext';
-import {  useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 // import { useForm } from 'react-hook-form';
 import mainApi from '../../utils/MainApi';
 
@@ -11,6 +11,7 @@ function Profile({ handleLogout }) {
 
 
 const { user: currentUser, updateUser } = React.useContext(CurrentUserContext);
+// const { name, email } = currentUser;
 
 const [isEditData, setIsEditData] = React.useState(false); 
 const [errorEdit, setErrorEdit] = React.useState(false); 
@@ -22,19 +23,44 @@ const [errorEdit, setErrorEdit] = React.useState(false);
   const [errorEmail, setErrorEmail] = React.useState('');
   const [isActiveEdit, setIsActiveEdit] = React.useState(false);
 
+  const [values, setValues] = React.useState({});
+  const [errors, setErrors] = React.useState({});
+  const [isValid, setIsValid] = React.useState({});
   
-  useEffect(() => {
-    if (currentUser.name !== name || currentUser.email !== email) {
-      setIsEditData(false);
-    } else {
-      setIsActiveEdit(false);
-    }
-  }, [currentUser, name, email]);
+
+  function handleChange(evt) {
+    const name = evt.target.name;
+    const value = evt.target.value;
+    setValues({ ...values, [name]: value.name });
+    setErrors({ ...errors, [name]: evt.target.validationMessage });
+    setIsValid(evt.target.closest('form').checkValidity());
+  }
+  const resetForms = useCallback(
+    (updatedValues = {}, updatedErrors = {}, updatedIsValid = false) => {
+      setValues(updatedValues);
+      setErrors(updatedErrors);
+      setIsValid(updatedIsValid);
+    },
+    [setValues, setErrors, setIsValid]
+  );
+  // useEffect(() => {
+  //   if (currentUser.name !== name || currentUser.email !== email) {
+  //     setIsEditData(false);
+  //   } else {
+  //     setIsActiveEdit(false);
+  //   }
+  // }, [currentUser, name, email]);
 
   useEffect(() => {
     setName(currentUser.name);
     setEmail(currentUser.email);
   }, [currentUser]);
+
+  // useEffect(() => {
+  // //   setName(currentUser.name);
+  // //  setEmail(currentUser.email);
+  //   resetForms(currentUser, {}, true);
+  // }, [currentUser, resetForms]);
 
 
 ///_____________________________________________________________________________
@@ -68,7 +94,7 @@ const [errorEdit, setErrorEdit] = React.useState(false);
     e.preventDefault();
    
     if (name !== currentUser.name || email !== currentUser.email) {
-      // setIsActiveEdit(true);
+      setIsActiveEdit(true);
       handelEditProfile({ name, email }); 
       updateUser({ name, email }); 
     } else {
@@ -76,6 +102,15 @@ const [errorEdit, setErrorEdit] = React.useState(false);
     }
   };
 
+  // function handleChange(event) {
+  
+  //   const name = evt.target.name;
+  //   const value = evt.target.value;
+  //   setValues({ ...values, [name]: value });
+  //   setErrors({ ...errors, [name]: evt.target.validationMessage });
+  //   setIsValid(evt.target.closest('form').checkValidity());
+  // }
+  
   function handleNameChange(event) {
     setIsActiveEdit(true);
     setIsEditData(false);
@@ -130,10 +165,7 @@ const [errorEdit, setErrorEdit] = React.useState(false);
                 placeholder="Имя"
                 id="name"
                 value={name || ''}
-                onChange={
-               
-                 handleNameChange
-                }
+                onChange={handleNameChange}
                 required
               ></input>
               <span className="form__inputs-error form__inputs-error_profile">
@@ -152,9 +184,7 @@ const [errorEdit, setErrorEdit] = React.useState(false);
                 placeholder="E-mail"
                 required
                 value={email || ''}
-                onChange={
-                 handleEmailChange
-                }
+                onChange={handleEmailChange}
               />
               <span className="form__inputs-error form__inputs-error_profile ">
                 {errorEmail}
