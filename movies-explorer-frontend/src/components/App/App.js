@@ -177,6 +177,8 @@ function App() {
       {isLoading ? (
         <Preloader />
       ) : (
+
+        // {!loggedIn ? () : () }
         <>
           <Route  exact  path={['/', '/movies', '/saved-movies', '/profile']}>
             <Header loggedIn={loggedIn} />
@@ -187,24 +189,61 @@ function App() {
 
           <Switch>
 
-            <Route exact path="/sign-in">
-              <Login
+          {/* {location.pathname === '/sign-in' && ( 
+              <Route path="*">
+                <PageNotFound />
+              </Route>
+            )} */}
+
+            <Route exact path="/sign-in"  >
+           
+             {!loggedIn ? (  <Login
                 title="Рады видеть!"
                 buttonText="Войти"
                 linkText="Регистрация"
                 bottomText="Ещё не зарегистрированы?"
               userLogin={userLogin}
+              /> ) : ( 
+              <Route>
+                <Header loggedIn={loggedIn} />
+              <ProtectedRoute
+                exact
+                path="/movies"
+                setIsLoading={setIsLoading}
+                loggedIn={loggedIn}
+                component={Movies}
               />
+              <Footer />
+              </Route>
+              ) } 
+            
+            
             </Route>
 
-            <Route exact path="/sign-up">
-              <Register
+            <Route exact path="/sign-up"   >
+
+            {!loggedIn ? (  <Register
+              loggedIn={loggedIn}
                 title="Добро пожаловать!"
                 buttonText="Зарегистрироваться"
                 linkText="Войти"
                 bottomText="Уже зарегистрированы?"
-userReg={userReg}
+               userReg={userReg}
+              /> ) : ( 
+                <Route>
+                <Header loggedIn={loggedIn} />
+              <ProtectedRoute
+                exact
+                path="/movies"
+                setIsLoading={setIsLoading}
+                loggedIn={loggedIn}
+                component={Movies}
               />
+              <Footer />
+              </Route>
+              
+              ) } 
+              
             </Route>
 
             <ProtectedRoute
@@ -248,6 +287,8 @@ userReg={userReg}
             textError={textError}
           />
         </>
+
+
       )}
     </div>
   </CurrentUserContext.Provider>

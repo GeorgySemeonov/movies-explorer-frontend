@@ -34,6 +34,8 @@ function Movies() {
   // }, []);
 
   const moviesFilter = (query, shorts) => {
+    setIsLoading(true);
+    setMovieError('');
     const storedMovies = JSON.parse(localStorage.getItem('movies'));
     const filteredMovies = searchFilter(storedMovies, query, shorts);
     if (filteredMovies.length === 0) {
@@ -59,19 +61,24 @@ function Movies() {
       moviesFilter(query, isShort);
     }
   };
+//  React.useEffect((query, isShort) => {
 
+//    setIsLoading(true);
+//     const moviesArray = JSON.parse(localStorage.getItem('movies'));
+//     if (!moviesArray) {
+//       moviesApi.getMovies()
+//         .then((films) => {
+//           localStorage.setItem('movies', JSON.stringify(films));
+//           moviesFilter(query, isShort);
+//         })
+//         .catch(() => {
+//           setMovieError("Ошибка. Проверьте подключение");
+//         });
+//     } else {
+//       moviesFilter(query, isShort);
+//     }
+//   }, []);
 
-  // const handleSearch = (query, isShort) => {
-  //   setIsLoading(true);
-  //   setMovieError('');
-  //   const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
-  //   const filtered = searchFilter(savedMovies, query, isShort);
-  //   if (filtered.length === 0) {
-  //     setMovieError('Ничего не найдено');
-  //   }
-  //   setMovies(filtered);
-  //   setIsLoading(false);
-  // };
 
   return (
     

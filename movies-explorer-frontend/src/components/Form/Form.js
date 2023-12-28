@@ -15,14 +15,45 @@ function Form({ nameForm, title, buttonText, linkText, bottomText,onSubmit }) {
    const [values, setValues] = useState({});
    const [errors, setErrors] = useState({});
    const [isValid, setIsValid] = useState({});
+//    var validateEmail = function(emailValue) {
+//     var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+//     return re.test(emailValue)
+// };
+const patternName = /^[a-zA-Zа-яА-ЯёЁ\- ]+$/;
+const patternPassword = /^[0-9a-zA-Z\sёЁ_\.\- ].{6,}/i;
+const patternEmail = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/; 
+
+const errorMessages = {
+    name: "Недопустимый символ.",
+    email: "Некорректный адрес электронной почты.",
+    password:
+      "Пароль не соответствует требованиям.",
+};
+
+React.useEffect(() => {
+    setIsValid(!Object.values(errors).some((err) => err.length !== 0));
+}, [errors]);
+
+function errMessage({name, value}) {
+    if (name === "name" && value.length >= 2 && !patternName.test(value)) {
+        setErrors({...errors, [name]: errorMessages[name]});
+    } else if (name === "email" && !patternEmail.test(value)) {
+        setErrors({...errors, [name]: errorMessages[name]})
+    } else if (name === "password" && value.length >= 6 && !patternPassword.test(value)) {
+        setErrors({...errors, [name]: errorMessages[name]})
+    }
+}
+
 
 
    function handleChange(evt) {
-     const name = evt.target.name;
-     const value = evt.target.value;
+    //  const name = evt.target.name;
+    //  const value = evt.target.value;
+    const { name, value } = evt.target;
      setValues({ ...values, [name]: value });
      setErrors({ ...errors, [name]: evt.target.validationMessage });
      setIsValid(evt.target.closest('form').checkValidity());
+     errMessage({ name, value });
    }
 
    const resetForms = useCallback(
@@ -33,6 +64,7 @@ function Form({ nameForm, title, buttonText, linkText, bottomText,onSubmit }) {
      },
      [setValues, setErrors, setIsValid]
    );
+
 
 
    useEffect(() => {
@@ -85,19 +117,21 @@ function Form({ nameForm, title, buttonText, linkText, bottomText,onSubmit }) {
           <span className="form__label_title">E-mail</span>
 
           <input
+         // /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
       //    /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
       //   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+      //  /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
 {...register('email', {
   required: true,
-  pattern:/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,
+  // pattern:validateEmail,
 })}
 
           type="email"
           name="email"
-          className="form__inputs-item"
+          className={ `form__inputs-item ${errors.email ? "form__inputs-item_invalid" : ""}`}
           onChange={handleChange}
           value={values.email || ''}
-          // pattern="/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/"
+          //  pattern={"/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"}
           placeholder="E-mail"
           minLength="6"
           required

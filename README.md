@@ -4,7 +4,7 @@
 
 ## Ссылки на проект
 
-IP-адрес IP 51.250.12.194
+IP-адрес IP 62.84.126.23
 
 Задеплоеный проект http://movie.searcher.api.josh.nomoredomainsrocks.ru/
 

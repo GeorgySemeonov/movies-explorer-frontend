@@ -22,19 +22,21 @@ const [errorEdit, setErrorEdit] = React.useState(false);
   const [errorName, setErrorName] = React.useState('');
   const [errorEmail, setErrorEmail] = React.useState('');
   const [isActiveEdit, setIsActiveEdit] = React.useState(false);
+  const [isUserDataChanged, setUserDataChanged] = React.useState(false);
 
   const [values, setValues] = React.useState({});
   const [errors, setErrors] = React.useState({});
   const [isValid, setIsValid] = React.useState({});
   
-
-  function handleChange(evt) {
-    const name = evt.target.name;
-    const value = evt.target.value;
-    setValues({ ...values, [name]: value.name });
-    setErrors({ ...errors, [name]: evt.target.validationMessage });
-    setIsValid(evt.target.closest('form').checkValidity());
-  }
+  const [names, setNames] = React.useState('');
+  // function handleChange(evt) {
+  //   setIsActiveEdit(true);
+  //   const name = evt.target.name;
+  //   const value = evt.target.value;
+  //   setValues({ ...values, [name]: value.name });
+  //   setErrors({ ...errors, [name]: evt.target.validationMessage });
+  //   setIsValid(evt.target.closest('form').checkValidity());
+  // }
   const resetForms = useCallback(
     (updatedValues = {}, updatedErrors = {}, updatedIsValid = false) => {
       setValues(updatedValues);
@@ -43,24 +45,30 @@ const [errorEdit, setErrorEdit] = React.useState(false);
     },
     [setValues, setErrors, setIsValid]
   );
+  useEffect(() => {
+    if (currentUser.name !== name || currentUser.email !== email) {
+      setIsEditData(false);
+    } else {
+      setIsActiveEdit(false);
+    }
+  }, [currentUser, name, email]);
+
   // useEffect(() => {
-  //   if (currentUser.name !== name || currentUser.email !== email) {
-  //     setIsEditData(false);
-  //   } else {
-  //     setIsActiveEdit(false);
-  //   }
-  // }, [currentUser, name, email]);
+  //   setName(currentUser.name);
+  //   setEmail(currentUser.email);
+  // }, [currentUser]);
+
+  useEffect(() => {
+    values.name === name && values.email === email
+      ? setUserDataChanged(false)
+      : setUserDataChanged(true);
+  }, [values]);
 
   useEffect(() => {
     setName(currentUser.name);
-    setEmail(currentUser.email);
-  }, [currentUser]);
-
-  // useEffect(() => {
-  // //   setName(currentUser.name);
-  // //  setEmail(currentUser.email);
-  //   resetForms(currentUser, {}, true);
-  // }, [currentUser, resetForms]);
+   setEmail(currentUser.email);
+    resetForms(currentUser, {}, true);
+  }, [currentUser, resetForms]);
 
 
 ///_____________________________________________________________________________
@@ -111,6 +119,21 @@ const [errorEdit, setErrorEdit] = React.useState(false);
   //   setIsValid(evt.target.closest('form').checkValidity());
   // }
   
+
+  function handleChange(evt) {
+    setIsActiveEdit(true);
+    setIsEditData(false);
+    setNames(evt.target.value);
+    const input = evt.target;
+    setNames(input.value);
+
+    // const name = evt.target.name;
+    // const value = evt.target.value;
+    // setValues({ ...values, [name]: value.name });
+    // setErrors({ ...errors, [name]: evt.target.validationMessage });
+    setIsValid(evt.target.closest('form').checkValidity());
+  }
+
   function handleNameChange(event) {
     setIsActiveEdit(true);
     setIsEditData(false);
@@ -118,6 +141,7 @@ const [errorEdit, setErrorEdit] = React.useState(false);
     const input = event.target;
     setName(input.value);
     setIsValidName(input.validity.valid);
+    setIsValid(event.target.closest('form').checkValidity());
     if (!isValidName) {
       setErrorName(input.validationMessage);
     } else {
@@ -131,6 +155,7 @@ const [errorEdit, setErrorEdit] = React.useState(false);
     const input = event.target;
     setEmail(input.value);
     setIsValidEmail(input.validity.valid);
+    setIsValid(event.target.closest('form').checkValidity());
     if (!isValidEmail) {
       setErrorEmail(input.validationMessage);
     } else {
@@ -204,13 +229,16 @@ const [errorEdit, setErrorEdit] = React.useState(false);
               Данные успешно сохранены!
             </span>
           )}
-
+ {/* <button className={`profile__button-edit link ${!isUserDataChanged || !isValid ? 'profile__button-edit_disabled' : ''}`} type="submit" disabled={!isUserDataChanged || !isValid}>Редактировать</button> */}
           <button
             type="submit"
             form="profile"
            
-            disabled={!isActiveEdit}
-            className={`profile__links-item ${isActiveEdit && 'hover'}`}
+          //  disabled={!isUserDataChanged || !isValid }
+           disabled={!isActiveEdit || !isValid }
+            className={`profile__links-item ${isActiveEdit && 'hover profile__edit-message_active'}`}
+            // profile__links-item_disabled
+            // className={`profile__links-item ${!isUserDataChanged || isValid ? '' : 'hover'}  `}
            
           >
             Редактировать

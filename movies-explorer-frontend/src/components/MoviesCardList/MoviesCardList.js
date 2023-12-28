@@ -45,11 +45,14 @@ function MoviesCardList({ saveMovies, movieError }) {
 
   return (
 
-    <section className="movies__cards-section">
+    <section
+    //  className="movies__cards-section"
+     >
+
     {movieError ? (
       <span className='movies__error'>{movieError}</span>
     ) : (
-      <>
+      <section className="movies__cards-section">
         {saveMovies.map((movie, index) => {
           if (index < maxMovies) {
             return (
@@ -58,7 +61,7 @@ function MoviesCardList({ saveMovies, movieError }) {
           }
           return null;
         })}
-      </>
+      </section>
     )}
     {saveMovies.length > maxMovies && location.pathname !== '/saved-movies' && (
       <button className="movies__more-button hover" onClick={showMoreMovies}>
