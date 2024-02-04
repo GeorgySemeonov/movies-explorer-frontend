@@ -82,14 +82,18 @@ React.useEffect(() => {
 [values]);
 
 function checkInputs () {
-  if ((values.name && values.email && values.password) !== undefined) {
+  if (nameForm === 'signup' && (values.name && values.email && values.password) !== undefined) {
       setisInputs(true);
+    } else if ( nameForm === 'signin' && (values.email && values.password) !== undefined) {
+      setisInputs(true);
+      
   } else {
       setisInputs(false);
   }
 }
 
-// console.log(isInputs);
+console.log(isInputs);
+console.log(nameForm);
 // console.log(isValid);
 
 // function handleValid() {
