@@ -22,10 +22,10 @@ function MoviesCardList({ saveMovies, movieError }) {
     //   console.log(location.pathname);
     //   setMaxMovies(28)
     // }
-    if (width <= 720) {
+    if (width <= 587) {
       setMaxMovies(5);
       setStep(2);
-    } else if (width <= 1000) {
+    } else if (width <= 1269) {
       setMaxMovies(8);
       setStep(2);
     } else if (width <= 1280) {
